@@ -1,26 +1,8 @@
-# FastAPI Backend
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-pydantic==2.5.0
-
-# Streamlit Frontend
-streamlit==1.28.1
-requests==2.31.0
-
-# RAG and Vector Store
-langchain==0.1.0
-langchain-community==0.0.10
-chromadb==0.4.18
+langchain==0.1.152
+chromadb==0.4.6
+openai==0.27.8
+torch==2.2.0
 sentence-transformers==2.2.2
-
-# Document Processing
-unstructured==0.11.6
-pypdf2==3.0.1
-
-# Utilities
 python-dotenv==1.0.0
-
-# Python 3.11 compatible versions
-typing-extensions==4.8.0
-
+langchain_community==0.0.20
+requests==2.31.0
