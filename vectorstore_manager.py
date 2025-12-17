@@ -1,15 +1,21 @@
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import UnstructuredFileLoader
-
-
 from langchain.docstore.document import Document
 from embedding import LocalEmbedding
 import os
+from pathlib import Path
+try:
+    from config import VECTORSTORE_PERSIST_DIR, CHUNK_SIZE, CHUNK_OVERLAP
+except ImportError:
+    # Fallback if config not available
+    VECTORSTORE_PERSIST_DIR = Path(__file__).parent / "chroma_vectorstore"
+    CHUNK_SIZE = 1000
+    CHUNK_OVERLAP = 200
 
 vectorstore = None
 current_file_path = None
-persist_folder = "D:/chroma_vectorstore"  # Folder to store vectorstores
+persist_folder = str(VECTORSTORE_PERSIST_DIR)  # Folder to store vectorstores
 
 def initialize_vectorstore(file_path: str):
     """
@@ -52,8 +58,8 @@ def initialize_vectorstore(file_path: str):
     
     # Split into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000, 
-        chunk_overlap=200,
+        chunk_size=CHUNK_SIZE, 
+        chunk_overlap=CHUNK_OVERLAP,
         separators=["\n\n", "\n", ". "]
     )
 
